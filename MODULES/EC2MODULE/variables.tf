@@ -1,0 +1,13 @@
+variable "ins_count" { default = 1 }
+variable "image_id" { default = ""}
+variable "ins_type" { default = "t2.micro" }
+variable "key_name" { default = ""}
+variable "subnet_id" { default = "" }
+variable "optmizeebs" { default = "false" }
+variable "publicip" { default = "false" }
+variable "protection" { default = "false" }
+variable "iam_profile" { default = "" }
+variable "ec2sg" { default = "" }
+variable "vol_size" { default = "" }
+variable "userdata" { default = "" }
+variable "tags" { type = "map" }
