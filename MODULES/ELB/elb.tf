@@ -32,5 +32,4 @@ resource "aws_route53_record" "fqdn" {
     evaluate_target_health  = false
   }
 }
-
 output "fqdn" { value = "${aws_route53_record.fqdn.*.id}" }

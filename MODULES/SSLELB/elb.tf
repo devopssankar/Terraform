@@ -2,7 +2,6 @@ data "aws_acm_certificate" "elb" {
   domain                    = "${var.domain_cert}"
   statuses                  = ["ISSUED"]
 }
-
 resource "aws_elb" "elb" {
   name                      = "${var.elbname}"
   instances                 = ["${var.backend_instances}"]
@@ -28,7 +27,6 @@ resource "aws_elb" "elb" {
   }
   tags                      = "${merge(var.tags)}"
 }
-
 resource "aws_load_balancer_policy" "service-ssl" {
   load_balancer_name        = "${aws_elb.elb.name}"
   policy_name               = "service-ssl"
@@ -86,13 +84,11 @@ resource "aws_load_balancer_policy" "service-ssl" {
     value                   = "true"
   }
 }
-
 resource "aws_load_balancer_listener_policy" "service-listener-policies-443" {
   load_balancer_name        = "${aws_elb.elb.name}"
   load_balancer_port        = 443
   policy_names              = ["${aws_load_balancer_policy.service-ssl.policy_name}"]
 }
-
 resource "aws_route53_record" "fqdn" {
   zone_id                   = "${var.zone_id}"
   name                      = "${var.service_fqdn}"
